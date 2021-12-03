@@ -79,10 +79,10 @@ Do_analysis = function(Data, k=7, cutoff=30){
 
 
 #Read data and remove probes with NA
-Data = readRDS("Dat/Immuno_matrix_postSelection.rds") #Complete matrix of 0/1s + IDs, script 01
+Data = readRDS("~/Desktop/Immuno_matrix_postSelection.rds") #Complete matrix of 0/1s + IDs, script 01
 process(Data) -> Data_all
 process( filter(Data, grepl("32_", ID))) -> Data_LLD #Removal of samples that are not LLD. Might consider removing longitudinal samples.
-read_csv("2821probes_annotation.csv") -> Annotation #Peptide annotation
+read_csv("~/Resilio Sync/Antibodies_WIS (1)/Data and oligo info/Data_subset//2821probes_annotation.csv") -> Annotation #Peptide annotation
 colnames(Annotation)[1] = "Probe"
 
 ###OVERALL (LLD+IBD)###
@@ -151,7 +151,7 @@ for (Ei in colnames(Eigengenes)){
                 
         }
 }
-Cor_eig %>% mutate(P_b =p.adjust(P, "bonferroni")) %>%arrange(P_b)
+Cor_eig %>% mutate(P_b =p.adjust(P, "bonferroni")) %>%arrange(P_b) %>% filter(P_b < 0.05 ) %>% filter(!grepl("ME0", ID))
 cor.test(Eigengenes$ME18, Eigengenes$ME17) ; cor.test(Eigengenes$ME18, Eigengenes$ME14)
 Cor_eig %>% mutate(P_b =p.adjust(P, "bonferroni")) %>%arrange(P_b) %>% filter(! grepl("ME0", ID)) %>% filter(P_b < 0.05)
 
