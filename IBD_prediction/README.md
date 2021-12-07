@@ -4,4 +4,5 @@ Files / folders:
 - antibody_prediction_v10.R : master script for training and testing of models (descriptions are in the file)
 - R_ML_scripts_v4.R : supporting generic functions used for model training, testing and visualization of results developed at UMCG
 - R_ML_helperscripts.R : extra supporting functions developed for this projects
-- Datasets : input data (distributed zipped)
+
+Note: datasets will be published with the upcoming manuscript
